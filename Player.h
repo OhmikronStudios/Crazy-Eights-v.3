@@ -9,6 +9,7 @@ class Player
 private:
 	string m_name;
 	Deck m_hand;
+	
 
 public:
 	Player(string name);
@@ -23,6 +24,7 @@ public:
 	void playCard(Deck& toDeck, int index);
 
 	int getHandSize();
+
 	
 	
 	

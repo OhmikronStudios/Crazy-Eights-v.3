@@ -36,7 +36,7 @@ string Deck::toString() const
     stringstream ss;
     for (int i = 0; i < m_deck.size(); ++i)
     {
-        ss << " | Card"<< i << ":"  << m_deck[i].toString();
+        ss<< i << ":"  << m_deck[i].toString()<< " | ";
     }
     return ss.str();
 }

@@ -49,8 +49,13 @@ string Card::getSuit() const
 string Card::toString() const
 {
 	
+
+
+
+
+
 	stringstream ss;
 
-	ss << getValue() << " of " << getSuit();
+	ss << getValue() << getSuit();
 	return ss.str();
 }

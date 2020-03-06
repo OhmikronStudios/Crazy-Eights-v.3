@@ -18,7 +18,7 @@ string Player::toString() const
 {
 	stringstream ss;
 	
-	ss << m_name << "(" << m_hand.toString() << ")";
+	ss << m_name << "'s Hand is: " << m_hand.toString();
 
 	return ss.str();
 }
@@ -48,8 +48,6 @@ Card Player::peekAtCard(int i)
 {
 	return m_hand.peekCard(i);
 }
-
-
 
 
 

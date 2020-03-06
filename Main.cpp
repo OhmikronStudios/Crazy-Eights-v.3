@@ -11,8 +11,10 @@ int main()
     int playerCount = 0;
 
     activeGame.addPlayer("Alice");
-    //activeGame.addPlayer("Bruno");
-   // activeGame.addPlayer("Charlie");
+    activeGame.addPlayer("Bruno");
+    activeGame.addPlayer("Charlie");
+    //activeGame.addPlayer("David");
+    //activeGame.addPlayer("Ethan");
 
 
     /*while (playerCount == 0)
