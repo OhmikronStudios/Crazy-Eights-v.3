@@ -9,12 +9,12 @@ int main()
     
     Game activeGame;
     int playerCount = 0;
-
+    //default is set to create a game of 5 players. If playing the game with variable names and players, comment this section and uncomment the next one.
     activeGame.addPlayer("Alice");
     activeGame.addPlayer("Bruno");
     activeGame.addPlayer("Charlie");
-   // activeGame.addPlayer("David");
-   // activeGame.addPlayer("Ethan");
+    activeGame.addPlayer("David");
+    activeGame.addPlayer("Ethan");
 
 
     /*while (playerCount == 0)
@@ -38,6 +38,7 @@ int main()
             }
         }
     }*/
+
     activeGame.playGame();
 
 

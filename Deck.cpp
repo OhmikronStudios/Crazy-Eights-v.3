@@ -18,7 +18,7 @@ void Deck::Shuffle()
 
     shuffle(m_deck.begin(), m_deck.end(), default_random_engine(seed));
     return;
-    //random_shuffle(m_deck.begin(), m_deck.end());
+    //random_shuffle(m_deck.begin(), m_deck.end());  //was testing this method out, could still possibly work
 }
 
 Card Deck::peekCard(int i)

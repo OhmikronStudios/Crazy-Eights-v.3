@@ -21,7 +21,7 @@ public:
 
 	void addPlayer(string name);
 	
-	int getPlayerCount();
+	// int getPlayerCount(); //made redundant with m_players.size()
 	
 
 };

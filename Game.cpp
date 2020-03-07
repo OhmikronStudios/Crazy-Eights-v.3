@@ -41,6 +41,7 @@ Player Game::playGame()
 	int cardsPlayed = 0;
 	bool gameOver = false;
 	string tempSuit;
+
 	while (gameOver == false)
 	{
 		
@@ -87,7 +88,7 @@ Player Game::playGame()
 					currentPlayer += 1;
 				}
 			}
-			
+			//new players turn - resetting the two turn dependant variables
 			cardsPlayed = 0;
 			jacksPlayed = 0;
 		}
@@ -120,7 +121,7 @@ Player Game::playGame()
 						continue;
 					}
 				}
-
+				//playing a 2nd (or more) cards means only the value matters
 				else if (cardsPlayed > 0)
 				{
 					if (selectedCard.getValue() == targetCard.getValue())
@@ -204,7 +205,7 @@ Player Game::playGame()
 			}
 		}
 
-		system("CLS");
+		system("CLS"); //only happening if the player plays a valid card, otherwise this gets skipped.
 
 	}
 	cout << "Congratulations " << m_players[currentPlayer].GetName() << ". You win!" << endl;

@@ -16,7 +16,7 @@ public:
 	Card peekCard(int i);
 	Card peekTopCard();
 	static void moveCard(Deck& fromDeck, Deck& toDeck, int index);
-	//void removeCard(Deck toDeck, int index);
+	//void removeCard(Deck toDeck, int index); //not using this anymore
 	int getSize() const;
 
 };
