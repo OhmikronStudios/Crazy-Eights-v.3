@@ -40,10 +40,10 @@ Player Game::playGame()
 	int jacksPlayed = 0;
 	int cardsPlayed = 0;
 	bool gameOver = false;
-	
+	string tempSuit;
 	while (gameOver == false)
 	{
-		string tempSuit;
+		
 		
 		//Start of turn instructions
 		cout << m_players[currentPlayer].toString() << endl;

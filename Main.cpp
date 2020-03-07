@@ -12,8 +12,8 @@ int main()
 
     activeGame.addPlayer("Alice");
     activeGame.addPlayer("Bruno");
-   // activeGame.addPlayer("Charlie");
-  //  activeGame.addPlayer("David");
+    activeGame.addPlayer("Charlie");
+   // activeGame.addPlayer("David");
    // activeGame.addPlayer("Ethan");
 
 
