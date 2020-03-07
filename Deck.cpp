@@ -12,13 +12,13 @@ Deck::Deck()
 
 void Deck::Shuffle()
 {
-    /*unsigned seed = chrono::system_clock::now()
+    unsigned seed = chrono::system_clock::now()
         .time_since_epoch()
         .count();
 
     shuffle(m_deck.begin(), m_deck.end(), default_random_engine(seed));
-    return;*/
-    random_shuffle(m_deck.begin(), m_deck.end());
+    return;
+    //random_shuffle(m_deck.begin(), m_deck.end());
 }
 
 Card Deck::peekCard(int i)
@@ -36,7 +36,7 @@ string Deck::toString() const
     stringstream ss;
     for (int i = 0; i < m_deck.size(); ++i)
     {
-        ss<< i << ":"  << m_deck[i].toString()<< " | ";
+        ss<< i << ": "  << m_deck[i].toString()<< " | ";
     }
     return ss.str();
 }

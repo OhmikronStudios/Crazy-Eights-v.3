@@ -17,12 +17,9 @@ const string Player::GetName() const
 string Player::toString() const
 {
 	stringstream ss;
-	
-	ss << m_name << "'s Hand is: " << m_hand.toString();
-
+	ss << "It is " << m_name << "'s turn." << endl << "Your hand is: " << m_hand.toString() << endl;
 	return ss.str();
 }
-
 
 void Player::drawCard(Deck& fromDeck, int index)
 {

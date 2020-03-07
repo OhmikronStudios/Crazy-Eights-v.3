@@ -6,9 +6,6 @@
 
 Game::Game() {}
 
-
-
-
 void Game::addPlayer(string name)
 {
 	Player player(name);
@@ -40,21 +37,22 @@ Player Game::playGame()
 		.count();
 	currentPlayer = seed % m_players.size();
 	
+	int jacksPlayed = 0;
+	int cardsPlayed = 0;
 	bool gameOver = false;
+	
 	while (gameOver == false)
 	{
-		int cardsPlayed = 0;
-		int jacksPlayed = 0;
 		string tempSuit;
 		
 		//Start of turn instructions
 		cout << m_players[currentPlayer].toString() << endl;
-		cout << "Please select a card to play from your hand" << endl << endl;
+		cout << m_players[currentPlayer].GetName() << ", please select a card to play from your hand" << endl << "If you are finished with your turn, enter -1 to pass." << endl << endl;
 		if (m_discardPile.peekTopCard().getValue() != "8")
 		{
-			cout << "The current card to play on is: " << m_discardPile.peekTopCard().toString() << endl;
+			cout << "The current card on top of the discard pile is: " << m_discardPile.peekTopCard().toString() << endl;
 		}
-		else
+		else if (m_discardPile.peekTopCard().getValue() == "8")
 		{
 			cout << "Due to a magic 8, the suit to play is: " << tempSuit << endl;
 		}
@@ -88,8 +86,8 @@ Player Game::playGame()
 				{
 					currentPlayer += 1;
 				}
-				
 			}
+			
 			cardsPlayed = 0;
 			jacksPlayed = 0;
 		}
@@ -100,8 +98,8 @@ Player Game::playGame()
 			Card selectedCard = m_players[currentPlayer].peekAtCard(chosenCard);
 			Card targetCard = m_discardPile.peekTopCard();
 			
-			//As long as the last card wasn't an 8, play this loop
-			if (m_discardPile.peekTopCard().getValue() != "8")
+			//As long as the last card wasn't an 8, play main loop
+			if (targetCard.getValue() != "8")
 			{
 				if (cardsPlayed == 0)
 				{
@@ -114,6 +112,7 @@ Player Game::playGame()
 						if (m_players[currentPlayer].getHandSize() == 0)
 						{
 							gameOver = true;
+							continue;
 						}
 					}
 					else
@@ -131,6 +130,7 @@ Player Game::playGame()
 						if (m_players[currentPlayer].getHandSize() == 0)
 						{
 							gameOver = true;
+							continue;
 						}
 					}
 					else
@@ -139,27 +139,28 @@ Player Game::playGame()
 					}
 				}
 			}
+
 			//If the last card was an 8, play this instead
 			else
 			{
-				if (cardsPlayed == 0)
+				
+				if (selectedCard.getValue() == "8" ||
+					selectedCard.getSuit() == tempSuit)
 				{
-					if (selectedCard.getValue() == "8" ||
-						selectedCard.getSuit() == tempSuit)
+					m_players[currentPlayer].playCard(m_discardPile, chosenCard);
+					cardsPlayed += 1;
+					if (m_players[currentPlayer].getHandSize() == 0)
 					{
-						m_players[currentPlayer].playCard(m_discardPile, chosenCard);
-						cardsPlayed += 1;
-						if (m_players[currentPlayer].getHandSize() == 0)
-						{
-							gameOver = true;
-						}
-					}
-
-					else
-					{
+						gameOver = true;
 						continue;
 					}
 				}
+
+				else
+				{
+					continue;
+				}
+				
 				
 			}
 
@@ -194,18 +195,18 @@ Player Game::playGame()
 				
 				switch (suitEntered)
 				{
-				case 0: tempSuit = "S"; break;
-				case 1: tempSuit = "C"; break;
-				case 2: tempSuit = "H"; break;
-				case 3: tempSuit = "D"; break;
+					case 0: tempSuit = "S"; break;
+					case 1: tempSuit = "C"; break;
+					case 2: tempSuit = "H"; break;
+					case 3: tempSuit = "D"; break;
 				}
 				currentPlayer += 1;
 			}
 		}
 
-
-
+		system("CLS");
 
 	}
+	cout << "Congratulations " << m_players[currentPlayer].GetName() << ". You win!" << endl;
 	return m_players[currentPlayer];
 }

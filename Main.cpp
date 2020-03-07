@@ -12,16 +12,16 @@ int main()
 
     activeGame.addPlayer("Alice");
     activeGame.addPlayer("Bruno");
-    activeGame.addPlayer("Charlie");
-    //activeGame.addPlayer("David");
-    //activeGame.addPlayer("Ethan");
+   // activeGame.addPlayer("Charlie");
+  //  activeGame.addPlayer("David");
+   // activeGame.addPlayer("Ethan");
 
 
     /*while (playerCount == 0)
     {
-        cout << "Please enter a number of players between 2 and 4" << endl;
+        cout << "Please enter a number of players between 2 and 6" << endl;
         cin >> playerCount;
-        if (playerCount < 2 || playerCount > 4)
+        if (playerCount < 2 || playerCount > 6)
         {
             cout << "Sorry, that's not the correct number of players, please try again" << endl;
             playerCount = 0;
@@ -38,8 +38,9 @@ int main()
             }
         }
     }*/
-
     activeGame.playGame();
+
+
 
 }
 

@@ -13,7 +13,6 @@ Card::Card(int v, int s)
 	m_suit = s;
 }
 
-
 string Card::getValue() const
 {
 	switch (m_value)
@@ -34,6 +33,7 @@ string Card::getValue() const
 	}
 	return "Invalid";
 }
+
 string Card::getSuit() const
 {
 	switch (m_suit)
@@ -48,14 +48,7 @@ string Card::getSuit() const
 
 string Card::toString() const
 {
-	
-
-
-
-
-
 	stringstream ss;
-
 	ss << getValue() << getSuit();
 	return ss.str();
 }
