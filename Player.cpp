@@ -3,11 +3,7 @@
 
 
 
-Player::Player(string name)
-{
-	m_name = name;
-	return;
-}
+Player::Player(string name, const SpriteLoader &spriteLoader) : m_name(name), m_hand(spriteLoader){}
 
 const string Player::GetName() const
 {

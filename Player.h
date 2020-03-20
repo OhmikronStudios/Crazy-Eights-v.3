@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "SpriteLoader.h"
 #include "Deck.h"
 
 
@@ -12,7 +12,7 @@ private:
 	
 
 public:
-	Player(string name);
+	Player(string name, const SpriteLoader &spriteLoader);
 	const string GetName() const;
 	Card peekAtCard(int i);
 	Deck getHand();

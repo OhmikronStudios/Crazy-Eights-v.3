@@ -2,15 +2,10 @@
 #include <sstream>
 #include <iostream>
 
-Card::Card()
+
+Card::Card(int v, int s, const SpriteLoader& spriteLoader) : m_value(v), m_suit(s), m_spriteLoader(spriteLoader)
 {
 
-}
-
-Card::Card(int v, int s)
-{
-	m_value = v;
-	m_suit = s;
 }
 
 string Card::getValue() const
@@ -38,10 +33,10 @@ string Card::getSuit() const
 {
 	switch (m_suit)
 	{
-	case 0: return "S";
-	case 1: return "C";
+	case 0: return "C";
+	case 1: return "D";
 	case 2: return "H";
-	case 3: return "D";
+	case 3: return "S";
 	}
 	return "Invalid";
 }
@@ -52,3 +47,4 @@ string Card::toString() const
 	ss << getValue() << getSuit();
 	return ss.str();
 }
+

@@ -1,14 +1,48 @@
 #include <iostream>
 #include "Game.h"
+#include "SpriteLoader.h"
+
 
 
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
 {
-    
-    Game activeGame;
+    SpriteLoader spriteLoader;
+    Game activeGame(spriteLoader);
     int playerCount = 0;
+  
+    
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+
+    /** Initialize SDL */
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
+    {
+        cerr << "Unable to init SDL: " << SDL_GetError() << endl;
+        return 1;
+    }
+    
+    // Close SDL at program end
+    atexit(SDL_Quit);
+
+    /** Create Window for Project */
+    window = SDL_CreateWindow("Crazy Eights", 100, 100, 1200, 800, SDL_WINDOW_SHOWN);
+
+    if (!window)
+    {
+        cerr << "SDL_CreateWindow Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
+    /** Create Renderer to draw to */
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (!renderer)
+    {
+        cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << endl;
+        return 1;
+    }
+
     //default is set to create a game of 5 players. If playing the game with variable names and players, comment this section and uncomment the next one.
     activeGame.addPlayer("Alice");
     activeGame.addPlayer("Bruno");
@@ -37,11 +71,14 @@ int main()
                 activeGame.addPlayer(playerName);
             }
         }
-    }*/
+    }
+    */
 
     activeGame.playGame();
+    
+    /** Free SDL resources */
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
 
-
-
+    return 0;
 }
-

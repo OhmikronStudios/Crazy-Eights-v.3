@@ -1,4 +1,7 @@
 #pragma once
+#include "Definitions.h"
+#include "Sprite.h"
+#include "SpriteLoader.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,16 +9,19 @@ using namespace std;
 class Card
 {
 public:
-	Card();
-	Card(int v, int s);
+	
+	Card(int v, int s, const SpriteLoader & spriteLoader);
 	string getValue() const;
 	string getSuit() const;
 	string toString() const;
+
 
 protected:
 
 private:
 	int m_value;
 	int m_suit;
+	const SpriteLoader &m_spriteLoader;
+
 };
 

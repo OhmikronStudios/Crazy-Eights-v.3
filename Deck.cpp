@@ -5,9 +5,10 @@
 #include <random> 
 #include <chrono>
 
-Deck::Deck() 
+
+Deck::Deck(const SpriteLoader &spriteLoader) : m_spriteLoader(spriteLoader)
 {
-  
+
 }
 
 void Deck::Shuffle()
@@ -18,7 +19,7 @@ void Deck::Shuffle()
 
     shuffle(m_deck.begin(), m_deck.end(), default_random_engine(seed));
     return;
-    //random_shuffle(m_deck.begin(), m_deck.end());  //was testing this method out, could still possibly work
+   
 }
 
 Card Deck::peekCard(int i)
@@ -37,18 +38,26 @@ string Deck::toString() const
     for (int i = 0; i < m_deck.size(); ++i)
     {
         ss<< i << ": "  << m_deck[i].toString()<< " | ";
+ 
     }
     return ss.str();
 }
 
 void Deck::setupDeck()
 {
+    
     for (int suit = 0; suit < 4; suit++)
     {
         for (int value = 0; value < 13; value++)
         {
-            Card card(value, suit);
+            //Sprite cardFace = Sprite("Deck.png", 45*value, 64*suit, 45, 64, renderer);
+            
+
+
+            Card card(value, suit, m_spriteLoader);
             m_deck.push_back(card);
+
+             
         }
     }
 }
