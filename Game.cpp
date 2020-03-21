@@ -1,23 +1,23 @@
 #include "Game.h"
-#include "SpriteLoader.h"
+
 #include <iostream>
 #include <algorithm>
 #include <random> 
 #include <chrono>
 
 
-Game::Game(const SpriteLoader &spriteLoader) : m_spriteLoader(spriteLoader), m_currentPlayer (0), m_discardPile(spriteLoader), m_drawPile(spriteLoader)
+Game::Game() : m_currentPlayer (0)
 {
 
 }
 
 void Game::addPlayer(string name)
 {
-	Player player(name, m_spriteLoader);
+	Player player(name);
 	m_players.push_back(player);
 }
 
-Player Game::playGame()
+Player Game::playGame(SDL_Renderer* renderer) 
 {
 	//Create and shuffle the draw deck
 	m_drawPile.setupDeck();
@@ -55,9 +55,14 @@ Player Game::playGame()
 	while (gameOver == false)
 	{
 		
-		
+		SDL_RenderClear(renderer);
 		//Start of turn instructions
+		m_discardPile.peekTopCard().paint(renderer, 100, 50);
+		
 		cout << m_players[m_currentPlayer].toString() << endl;
+		m_players[m_currentPlayer].paint(renderer, 100, 300);
+		
+		
 		cout << m_players[m_currentPlayer].GetName() << ", please select a card to play from your hand" << endl << "If you are finished with your turn, enter -1 to pass." << endl << endl;
 		if (m_discardPile.peekTopCard().getValue() != "8")
 		{
@@ -67,10 +72,46 @@ Player Game::playGame()
 		{
 			cout << "Due to a magic 8, the suit to play is: " << tempSuit << endl;
 		}
-		
+		SDL_RenderPresent(renderer);
 
 		int chosenCard;
-		cin >> chosenCard;
+		//cin >> chosenCard;
+
+		SDL_Event event;
+
+		while (true)
+		{
+			int errorCode = SDL_WaitEvent(&event);
+			if (errorCode == 1)
+			{
+				if (event.type ==  SDL_MOUSEBUTTONUP)
+				{
+					cout << event.button.x << endl;
+					cout << event.button.y << endl;
+
+					if (event.button.y >= 300 && event.button.y < 363)
+					{
+						int Xindex = (event.button.x - 100) / 45.0;
+						cout << Xindex << endl;
+						if (Xindex >= 0 && Xindex <= m_players[m_currentPlayer].getHandSize())
+						{
+							if (Xindex == m_players[m_currentPlayer].getHandSize())
+							{
+								chosenCard = -1;
+							}
+							else
+							{
+								chosenCard = Xindex;
+							}
+							break;
+						}
+
+					}
+
+				}
+			}
+		}
+
 
 		//Invalid entry returns to start of turn
 		if (chosenCard > m_players[m_currentPlayer].getHandSize() || chosenCard < -1)

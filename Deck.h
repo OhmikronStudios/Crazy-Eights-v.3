@@ -2,21 +2,21 @@
 
 #include <vector>
 #include "Card.h"
-#include "SpriteLoader.h"
+
 
 class Deck
 {
 	vector<Card> m_deck;
-	const SpriteLoader &m_spriteLoader;
+
 
 	
 
 public:
 
-	Deck(const SpriteLoader &spriteLoader);
+	Deck();
 	void setupDeck();
 	string toString() const;
-	
+	int paint(SDL_Renderer*, int posX, int posY);
 
 	void Shuffle();
 	Card peekCard(int i);

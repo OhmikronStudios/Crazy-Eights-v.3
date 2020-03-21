@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-Card::Card(int v, int s, const SpriteLoader& spriteLoader) : m_value(v), m_suit(s), m_spriteLoader(spriteLoader)
+Card::Card(int v, int s) : m_value(v), m_suit(s), m_spriteWidth(45), m_spriteHeight(63)
 {
 
 }
@@ -48,3 +48,45 @@ string Card::toString() const
 	return ss.str();
 }
 
+int Card::getWidth() const
+{
+	return m_spriteWidth;
+}
+
+int Card::getHeight() const
+{
+	return m_spriteHeight;
+}
+
+int Card::paint(SDL_Renderer* renderer, int xPos, int yPos)
+{
+	
+	/** Load picture for Sprite */
+	SDL_Texture *image = IMG_LoadTexture(renderer, "CardsSmall.jpg");
+
+	/** Check if the Sprite was loaded */
+	if (!image)
+	{
+		/** Bad stuff happened */
+		cerr << "IMG_LoadTexture Error: " << IMG_GetError() << endl;
+		return (1);
+	}
+
+	//draw
+	/** Position sprite on Screen */
+	SDL_Rect source = { m_value*m_spriteWidth, m_suit*m_spriteHeight, m_spriteWidth, m_spriteHeight };
+	SDL_Rect dest = {xPos, yPos, m_spriteWidth, m_spriteHeight};
+
+	/** Draw Sprite to Screen */
+	int errorCode = SDL_RenderCopy(renderer, image, &source, &dest);
+	
+	if (errorCode != 0)
+	{
+		/** Bad stuff happened */
+		cerr << "SDL_RenderCopy Error: " << IMG_GetError() << endl;
+		return (1);
+	}
+	SDL_DestroyTexture(image);
+	return(0);
+	
+}

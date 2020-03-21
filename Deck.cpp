@@ -1,19 +1,18 @@
 #include "Deck.h"
-
 #include <sstream>
 #include <algorithm>
 #include <random> 
 #include <chrono>
 
 
-Deck::Deck(const SpriteLoader &spriteLoader) : m_spriteLoader(spriteLoader)
+Deck::Deck()
 {
 
 }
 
 void Deck::Shuffle()
 {
-    unsigned seed = chrono::system_clock::now()
+    auto seed = chrono::system_clock::now()
         .time_since_epoch()
         .count();
 
@@ -54,7 +53,7 @@ void Deck::setupDeck()
             
 
 
-            Card card(value, suit, m_spriteLoader);
+            Card card(value, suit);
             m_deck.push_back(card);
 
              
@@ -79,3 +78,11 @@ int Deck::getSize() const
     return m_deck.size();
 }
 
+int Deck::paint(SDL_Renderer* renderer, int posX, int posY)
+{
+    for (int i = 0; i < m_deck.size(); ++i)
+    {
+        m_deck[i].paint(renderer, posX + (i * m_deck[i].getWidth()), posY);
+    }
+    return (0);
+}

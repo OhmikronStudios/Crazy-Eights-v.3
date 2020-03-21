@@ -1,17 +1,14 @@
 #include <iostream>
 #include "Game.h"
 #include "SpriteLoader.h"
-
+#include "Card.h"
+#include "Deck.h"
 
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-    SpriteLoader spriteLoader;
-    Game activeGame(spriteLoader);
-    int playerCount = 0;
-  
     
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
@@ -27,7 +24,7 @@ int main(int argc, char** argv)
     atexit(SDL_Quit);
 
     /** Create Window for Project */
-    window = SDL_CreateWindow("Crazy Eights", 100, 100, 1200, 800, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Crazy Eights", 100, 100, 640, 400, SDL_WINDOW_SHOWN);
 
     if (!window)
     {
@@ -43,12 +40,19 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    Game activeGame;
+    int playerCount = 0;
+
     //default is set to create a game of 5 players. If playing the game with variable names and players, comment this section and uncomment the next one.
     activeGame.addPlayer("Alice");
     activeGame.addPlayer("Bruno");
     activeGame.addPlayer("Charlie");
     activeGame.addPlayer("David");
     activeGame.addPlayer("Ethan");
+
+   
+
+
 
 
     /*while (playerCount == 0)
@@ -74,7 +78,7 @@ int main(int argc, char** argv)
     }
     */
 
-    activeGame.playGame();
+    activeGame.playGame(renderer);
     
     /** Free SDL resources */
     SDL_DestroyRenderer(renderer);

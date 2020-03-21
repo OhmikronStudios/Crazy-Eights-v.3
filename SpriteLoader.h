@@ -1,22 +1,21 @@
 #pragma once
 #include "Definitions.h"
-#include "Sprite.h"
-#include "Card.h"
 
-
+class Card;
+class Sprite;
 
 
 class SpriteLoader
 {
 public:
-	SpriteLoader();
+	SpriteLoader(SDL_Renderer *renderer);
 	Sprite getSprite(const Card& card);
 
 
 
 
 private:
-
+	SDL_Renderer* m_renderer;
 
 
 };

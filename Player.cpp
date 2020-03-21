@@ -3,7 +3,7 @@
 
 
 
-Player::Player(string name, const SpriteLoader &spriteLoader) : m_name(name), m_hand(spriteLoader){}
+Player::Player(string name) : m_name(name){}
 
 const string Player::GetName() const
 {
@@ -42,8 +42,11 @@ Card Player::peekAtCard(int i)
 	return m_hand.peekCard(i);
 }
 
-
-
+int Player::paint(SDL_Renderer* renderer, int posX, int posY)
+{
+	return m_hand.paint(renderer, posX, posY);
+	
+}
 
 
 

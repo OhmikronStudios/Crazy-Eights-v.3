@@ -3,7 +3,7 @@
 #include "Deck.h"
 #include "Card.h"   
 #include "Player.h"
-#include "SpriteLoader.h"
+
 
 
 
@@ -15,13 +15,13 @@ class Game
 	Deck m_discardPile;
 	int m_currentPlayer;
 	//bool isValidCard(Card);
-	const SpriteLoader &m_spriteLoader;
+
 
 public:
 
-	Game(const SpriteLoader &spriteLoader);
+	Game();
 
-	Player playGame();
+	Player playGame(SDL_Renderer* renderer);
 
 	void addPlayer(string name);
 	

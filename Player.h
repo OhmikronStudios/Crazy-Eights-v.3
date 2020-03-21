@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SpriteLoader.h"
+
 #include "Deck.h"
 
 
@@ -12,11 +12,11 @@ private:
 	
 
 public:
-	Player(string name, const SpriteLoader &spriteLoader);
+	Player(string name);
 	const string GetName() const;
 	Card peekAtCard(int i);
 	Deck getHand();
-
+	int paint(SDL_Renderer*, int posX, int posY);
 
 	string toString() const;
 
